@@ -1,0 +1,58 @@
+1)Create Employee table and perform all the operations.
+CREATE TABLE Employees(
+EID NUMBER(10) NOT NULL UNIQUE PRIMARY KEY,
+ENAME VARCHAR2(30) NOT NULL,
+EDEPT NUMBER(4) NOT NULL,
+E_AGE NUMBER(2) CHECK( E_AGE>19),
+SAL NUMBER(6),
+MGR NUMBER(3)
+);
+INSERT OPERATION
+INSERT INTO EMP VALUES(1,'FAISAL',10,23,100000,5);
+INSERT INTO EMP VALUES(2,'GOWTHAM',20,25,90000,1);
+INSERT INTO EMP VALUES(3,'ABHI',30,23,85000,1);
+INSERT INTO EMP VALUES(4,'RESHMA',20,23,100000,1);
+INSERT INTO EMP VALUES(5,'XYZ',10,23,125000,7);
+INSERT INTO EMP VALUES(6,'ADMIN',30,30,95000,5);
+INSERT INTO EMP VALUES(7,'KING',10,23,150000,1);
+OR
+INSERT INTO EMP VALUES(&V1,'&V2'&V3,&V4,&V5);
+
+UPDATE OPERATION
+UPDATE EMP SET SAL=110000 WHERE ENAME='FAISAL';
+
+2)Write a Query to display name, salary of all Employees ?
+SELECT ENAME SAL FORM EMP;
+
+3)Write a Query to all the details of the Employees ?
+SELECT * FROM Employees;
+
+4)Write a Query to display name of the Employee Whose salary is 5000 ?
+SELECT ENAME FROM EMPLOYEES WHERE SAL=5000;
+
+5)write a Query to return all rows from the Production.Product 
+table where the ListPrice value is greater than 100 and the Color
+column has a value of “Red”.
+SELECT * FROM Production.Product WHERE COLOR='RED' GROUP BY COLOR HAVING MIN(VALUE)>100;
+OR
+SELECT * FROM Production.Product WHERE COLOR='RED' AND VALUE>100; 
+
+6)Write a Query to display total salary of the Employee needed pay them, 
+who is taking salary greater than commission and have Reporting manager 
+SELECT salary, TOTAL_SAL SALARY+commission FROM Employee WHERE SALARY>COMM;
+
+7)Display the total number of Employees who are working under 3456.
+SELECT COUNT(*) FROM Employees WHERE MGR=3456;
+
+8)Write a Query to display total salary needed to pay for the employees
+ working in dept 10 also display min and max salary in that dept and 
+even total number of employees working in it.
+SELECT SUM(SALARY), MIN(SALARY), MAX(SALARY),NO_EMP COUNT(*) FROM employees WHERE DEPT=10;
+OR
+SELECT DEPT,SUM(SALARY), MIN(SALARY), MAX(SALARY),NO_EMP COUNT(*) FROM employees WHERE DEPT=10 GROUP BY DEPT;
+
+BY USING FULL OUTER JOIN JOINING 3 TABLE
+SELECT * FROM EMP E1 FULL OUTER JOIN (EMPDEPT E2 FULL OUTER JOIN DEPT_INFO E3 ON E2.EDEPT = E3.EDEPT)
+   ON E1.EDEPT = E2.EDEPT;
+
+
